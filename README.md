@@ -54,8 +54,10 @@ catkin config -DCMAKE_BUILD_TYPE=Release --extend /opt/ros/noetic
 cd src
 # With ssh
 git clone git@github.com:NeBula-Autonomy/LOCUS.git
+git clone git@github.com:NeBula-Autonomy/common_nebula_slam.git
 # With https
 git clone https://github.com/NeBula-Autonomy/LOCUS.git
+git clone https://github.com/NeBula-Autonomy/common_nebula_slam.git
 cd..
 catkin build locus
 ```
@@ -88,6 +90,20 @@ This will install clang and put a pre-commit hook to maintain clang formatting. 
 git clang-format -f
 ```
 
+## Dockerfile
+
+The docker provides an alternative, contained method for installation
+
+Go to the docker folder, and
+```
+./cmd locus build
+./cmd locus run
+./cmd locus bash
+cd ~/locus_ws/
+catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
+catkin build
+source devel/setup.bash
+```
 
 
 # Running Instructions
