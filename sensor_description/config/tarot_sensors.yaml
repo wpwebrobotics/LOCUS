@@ -1,0 +1,26 @@
+velodyne:
+  name: velodyne
+  parent: base_link
+  position:
+    x: 0.0
+    y: 0
+    z: 0.30
+  orientation:
+    r: 0
+    p: 0
+    y: 0.0
+  rate: 10
+  topic_name: velodyne_points_tr
+vn100:
+  name: vn100
+  parent: base_link
+  topic_name: vectornav/IMU_tr
+  position:
+    x: 0
+    y: 0
+    z: 0
+  orientation:
+    r: 0
+    p: 0
+    y: 0
+  rate: 200

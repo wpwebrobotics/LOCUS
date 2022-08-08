@@ -1,0 +1,31 @@
+<launch>
+      <arg name="use_sim_time" default="false"/>
+      <arg name="ROBOT_NAME" default="tarot" />
+      <arg name="ROBOT_TYPE" default="tarot" />
+
+      <param name="use_sim_time" value="$(arg use_sim_time)"/>
+
+      <!-- Rviz -->
+      <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find locus)/rviz/$(arg ROBOT_NAME)_locus.rviz" />
+
+      <include file="$(find locus)/launch/locus.launch">
+            <arg name="robot_namespace" value="$(arg ROBOT_NAME)" />
+      </include>
+
+      <!-- rosrun locus odom_to_map_tf.py <robot_ns> -->
+      <node pkg="locus" type="odom_to_map_tf.py" name="tf_locus" output="screen">
+            <param name="robot_name" value="tarot" />
+      </node>
+
+      <!-- transformation -->
+      <node pkg="extars_ros" type="republish_pointcloud_frame.py" name="rep_velodyne" output="screen">
+            <param name="source_topic" value="/tarot/velodyne_points" />
+            <param name="target_topic" value="/tarot/velodyne_points_tr" />
+            <param name="new_frame" value="tarot/velodyne" />
+      </node>
+      <node pkg="extars_ros" type="republish_imu_frame.py" name="rep_imu" output="screen">
+            <param name="source_topic" value="/tarot/vectornav/IMU" />
+            <param name="target_topic" value="/tarot/vectornav/IMU_tr" />
+            <param name="new_frame" value="tarot/base_link" />
+      </node>
+</launch>

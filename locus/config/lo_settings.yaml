@@ -3,7 +3,7 @@ b_verbose: false
 odom_pub_rate: 10
 
 # How long to wait for transform between timestamps
-transform_wait_duration: 0.01
+transform_wait_duration: 0.01 # Default: 0.01
 
 translation_threshold_kf: 1.0
 rotation_threshold_kf: 0.3
@@ -15,7 +15,7 @@ map_publishment:
   meters: 1
 
 queues:
-  lidar_queue_size: 1
+  lidar_queue_size: 1 # Default: 1
   imu_queue_size: 100
   odom_queue_size: 100
 
@@ -30,7 +30,7 @@ buffers:
   # 3   ---> odometry integration 
 # Recommended to use 1 for NeBula Spot datasets
 data_integration:
-  mode: 3
+  mode: 1
 
 b_is_flat_ground_assumption: false
 
@@ -53,10 +53,10 @@ b_enable_msw: true
   # multi_threaded_mapper -> PointCloudMultiThreadedMapper
   # ikdtree_mapper -> PointCloudIkdTreeMapper
 
-window_local_mapping_type: multi_threaded_mapper
+window_local_mapping_type: multi_threaded_mapper  # Default: multi_threaded_mapper
 
-box_filter_size: 20
-velocity_buffer_size: 10
+box_filter_size: 20 # Default: 20
+velocity_buffer_size: 10  # Default: 10
 translation_threshold_msw: 5
 rotational_velocity_threshold: 1
 translational_velocity_threshold: 0.1
@@ -82,7 +82,7 @@ rotation_threshold_open_space_kf: 0.6
 # -------------------Adaptive voxelization---------------------
 
 b_adaptive_input_voxelization: true
-points_to_process_in_callback: 3000
+points_to_process_in_callback: 3000 # Default: 3000
 
 # ------------- Debug utilities -------------------------------
 

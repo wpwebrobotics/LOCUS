@@ -1,0 +1,20 @@
+<launch>
+    <!-- Superga -->
+    <arg name="start_seconds" default="355" />
+    <arg name="duration_seconds" default="161" />
+    <arg name="bag_file" default="/home/robot/extars/data/superga_2022_06_22.bag" />
+
+    <!-- Cavedio -->
+    <!-- <arg name="start_seconds" default="410" /> -->
+    <!-- <arg name="bag_file" default="/media/robot/DATA/Data/extars/rosbags/cavedio_flir.bag" /> -->
+
+    <!-- Ramat -->
+    <!-- <arg name="start_seconds" default="250" />
+    <arg name="bag_file" default="/media/robot/DATA/Data/extars/rosbags/ramat.bag" /> -->
+
+    <param name="use_sim_time" value="false"/>
+
+    <!-- Rosbag -->
+    <node pkg="rosbag" type="play" name="player" output="screen" args="-s $(arg start_seconds) -r 1.0 -u $(arg duration_seconds) --clock clock:=/clock velodyne_points:=/tarot/velodyne_points vectornav/IMU:=/tarot/vectornav/IMU --topics clock velodyne_points vectornav/IMU camera/color/image_raw --bags=$(arg bag_file)"/>
+
+</launch>
